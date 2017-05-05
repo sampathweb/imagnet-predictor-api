@@ -25,6 +25,7 @@ class IndexHandler(tornado.web.RequestHandler):
     def head(self):
         self.finish()
 
+
 class PredictionHandler(BaseApiHandler):
     """Main Prediction Handler"""
 
@@ -38,12 +39,6 @@ class PredictionHandler(BaseApiHandler):
     @concurrent.run_on_executor(executor='_thread_pool')
     def _blocking_predict(self, data):
         """Blocking Call to call Predict Function"""
-        # target_values = self.model.predict(X)
-        # target_names = ['setosa', 'versicolor', 'virginica']
-        # results = [target_names[pred] for pred in target_values]
-        # return results
-        print(data)
-
         image_filename = str(uuid.uuid4()) + ".jpg"
         image_filename = "app/static/temp-img/" + image_filename
         with open(image_filename, "wb") as fh:
